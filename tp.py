@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import argparse 
 from lexer import GoLexer
-import parser
+from parser import GoParser
 def parseArgs():
     parser = argparse.ArgumentParser(description='Translator, from GO to JSON.')
     #parser.add_argument("", help="")            
@@ -11,6 +11,10 @@ def parseArgs():
 if __name__ == "__main__":
     args = parseArgs()
     # Build the lexer and try it out
-    m = GoLexer()
-    m.build()           # Build the lexer
-    m.test("3 + 4")     # Test it
+    l = GoLexer()
+    l.build()           # Build the lexer
+    l.test("3 + 4")     # Test it
+
+
+    p = GoParser()
+    print(p.tokens)

@@ -4,9 +4,10 @@
 import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
-from calclex import tokens
+from lexer import GoLexer
 
 class GoParser:
+    tokens = GoLexer.tokens
     def p_expression_plus(p):
         'expression : expression PLUS term'
         p[0] = p[1] + p[3]
@@ -46,13 +47,4 @@ class GoParser:
     # Build the parser
     def build(self,**kwargs):
         self.parser = yacc.yacc(module=self, **kwars)
-
-while True:
-   try:
-       s = raw_input('calc > ')
-   except EOFError:
-       break
-   if not s: continue
-   result = parser.parse(s)
-   print(result)
 

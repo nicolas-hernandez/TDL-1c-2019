@@ -13,8 +13,10 @@ if __name__ == "__main__":
     # Build the lexer and try it out
     l = GoLexer()
     l.build()           # Build the lexer
-    l.test("3 + 4")     # Test it
+    print(l.test("3 + 4"))     # Test it
 
 
     p = GoParser()
-    print(p.tokens)
+    p.build()
+    print(p.test("3 + 4"))
+

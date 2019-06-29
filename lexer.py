@@ -48,8 +48,10 @@ class GoLexer(object):
     
     # Test it output
     def test(self,data):
+        tokens = []
         self.lexer.input(data)
         for tok in self.lexer:
-            print(tok)
+            tokens.append(tok)
+        return tokens
  
 

@@ -11,3 +11,5 @@ B -> string | int | float64 | bool | []B
 C -> struct {\n L } 
 L -> N T L\n | lambda 
 
+ATR PERRO
+GT.

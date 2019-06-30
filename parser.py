@@ -19,10 +19,12 @@ class GoParser:
 
     def p_definition(self, p):
         'definition : TYPE ID type'
+        print("parsing type: ", p[2])
 
     def p_type(self, p):
         '''type : complex 
-                | basic'''
+                | basic
+                | ID'''
    
     # TODO: testear como lexea/parsea los brackets, con espacio y sin espacio
     # creo que al ignorar espacios puedo aceptar "[]  int". Es valido?
@@ -44,11 +46,13 @@ class GoParser:
     #Define el lambda de la gramatica
     def p_lambda(self, p): 
         'lambda :'
+        print("lambda")
         pass
 
     # Error rule for syntax errors
     def p_error(self, p):
-        print("Syntax error in input!")
+        
+        print("Syntax error:", p)
 
     # Build the parser
     def build(self,**kwargs):

@@ -24,8 +24,7 @@ type pais struct {
         prefijo string
         sufijo  string
     }
-}
-    '''
+}'''
     print(lexer.test(text))
     print(parser.test(text))
 
@@ -36,7 +35,7 @@ if __name__ == "__main__":
     l.build()        
     p= None
     p = GoParser()
-    p.build()
+    p.build(debug=True) #Podemos sacar el parametro este para entregar
     if args.test:
         testCase(l, p)
     else:

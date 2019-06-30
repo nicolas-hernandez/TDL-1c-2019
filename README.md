@@ -11,3 +11,7 @@ B -> string | int | float64 | bool | []B
 C -> struct {\n L }  
 L -> N T L\n | lambda  
 
+## TODO
+- Agregar semantica al parser. Permitir multiples saltos de linea donde corresponda.
+- rand.py module: rint, rfloat y rstring. Retornan valores aleatorios de esos tipos.
+- unit testing/turro testing

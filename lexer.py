@@ -4,34 +4,37 @@ import ply.lex as lex
  
 class GoLexer(object):
     # List of token names.   This is always required
-    tokens = (
+    reserved = {
+        'string':'STR',
+        'int':'INT',
+        'bool':'BOOL',
+        'struct':'STRUCT',
+        'type':'TYPE'
+    }
+    tokens = [
        'LBRACE',
        'RBRACE',
        'BRACKETS',
        'ID',
        'NEWLINE',
        'RPAREN',
-    ) + list(reserved.values())
+       'FLOAT'
+    ] + list(reserved.values())
 
-    reserved = {
-        'string':'STR'
-        'int':'INT'
-        'float64':'FLOAT'
-        'bool':'BOOL'
-        'struct':'STRUCT'
-        'type':'TYPE'
-    }
     # Regular expression rules for simple tokens
     t_LBRACE   = r'\{'
     t_RBRACE   = r'\}'
-    t_BRACKETS  = r'[]'
+    t_BRACKETS  = r'\[\]'
 
     # A regular expression rule with some action code
     # Note addition of self parameter since we're in a class
 
+    def t_FLOAT(self, t):
+        r'float64'
+        return t
     def t_ID(self, t):
-        r'[A-Za-z]*'
-        t.type = reserved.get(t.value,'ID') # Check for reserved words
+        r'[A-Za-z]+'
+        t.type = self.reserved.get(t.value,'ID') # Check for reserved words
         return t
     # Define a rule so we can track line numbers
     def t_NEWLINE(self,t):

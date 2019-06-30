@@ -3,15 +3,15 @@
 import argparse 
 import sys
 from lexer import GoLexer
-from parser import GoParser
+#from parser import GoParser
 def parseArgs():
     parser = argparse.ArgumentParser(description='Translator, from GO to JSON.')
     parser.add_argument("--test",  help="Run a little test. Should be deleted and replaced with unit tests instead.", action='store_true')
     args = parser.parse_args()                                            
+    return args
 
 def testCase(lexer, parser):
-    text ='''
-type persona struct {
+    text ='''type persona struct {
     nombre  string
     edad    int
     nacionalidad pais
@@ -27,15 +27,16 @@ type pais struct {
 }
     '''
     print(lexer.test(text))
-    print(parser.test(text))
+#    print(parser.test(text))
 
 
 if __name__ == "__main__":
     args = parseArgs()
     l = GoLexer()
-    l.build()           
-    p = GoParser()
-    p.build()
+    l.build()        
+    p= None
+ #   p = GoParser()
+ #   p.build()
     if args.test:
         testCase(l, p)
     else:

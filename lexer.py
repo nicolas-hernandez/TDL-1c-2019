@@ -17,7 +17,6 @@ class GoLexer(object):
        'BRACKETS',
        'ID',
        'NEWLINE',
-       'RPAREN',
        'FLOAT'
     ] + list(reserved.values())
 

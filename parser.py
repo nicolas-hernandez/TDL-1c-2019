@@ -1,47 +1,53 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#import something
 import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
 from lexer import GoLexer
+from rand import rint, rstring, rfloat
 
 class GoParser:
     tokens = GoLexer.tokens
-    def p_expression_plus(self,p):
-        'expression : expression PLUS term'
-        p[0] = p[1] + p[3]
+    # No terminales en minuscula
+    # Terminales en mayuscula, vienen del lexer
+    #TODO: multiple newlines between definitions
+    def p_initial_multiple(self, p):
+        'initial : definition NEWLINE initial'
 
-    def p_expression_minus(self,p):
-        'expression : expression MINUS term'
-        p[0] = p[1] - p[3]
+    def p_initial_single(self, p):
+        'initial : definition'
 
-    def p_expression_term(self,p):
-        'expression : term'
-        p[0] = p[1]
+    def p_definition(self, p):
+        'definition : TYPE ID type'
 
-    def p_term_times(self,p):
-        'term : term TIMES factor'
-        p[0] = p[1] * p[3]
+    def p_type(self, p):
+        '''type : complex 
+                | basic'''
+   
+    # TODO: testear como lexea/parsea los brackets, con espacio y sin espacio
+    # creo que al ignorar espacios puedo aceptar "[]  int". Es valido?
+    def p_basic(self, p):
+        '''basic : STR 
+                 | INT 
+                 | FLOAT 
+                 | BOOL 
+                 | BRACKETS type'''
+    
+    def p_complex(self, p):
+        'complex : STRUCT LBRACE NEWLINE list RBRACE'
 
-    def p_term_div(self,p):
-        'term : term DIVIDE factor'
-        p[0] = p[1] / p[3]
+    def p_list(self,p):
+        '''list : ID type NEWLINE list 
+                | lambda'''
 
-    def p_term_factor(self,p):
-        'term : factor'
-        p[0] = p[1]
 
-    def p_factor_num(self,p):
-        'factor : NUMBER'
-        p[0] = p[1]
-
-    def p_factor_expr(self,p):
-        'factor : LPAREN expression RPAREN'
-        p[0] = p[2]
+    #Define el lambda de la gramatica
+    def p_lambda(self, p): 
+        'lambda :'
+        pass
 
     # Error rule for syntax errors
-    def p_error(self,p):
+    def p_error(self, p):
         print("Syntax error in input!")
 
     # Build the parser

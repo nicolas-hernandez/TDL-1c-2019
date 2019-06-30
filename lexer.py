@@ -5,34 +5,39 @@ import ply.lex as lex
 class GoLexer(object):
     # List of token names.   This is always required
     tokens = (
-       'NUMBER',
-       'PLUS',
-       'MINUS',
-       'TIMES',
-       'DIVIDE',
-       'LPAREN',
+       'LBRACE',
+       'RBRACE',
+       'BRACKETS',
+       'ID',
+       'NEWLINE',
        'RPAREN',
-    )
+    ) + list(reserved.values())
 
+    reserved = {
+        'string':'STR'
+        'int':'INT'
+        'float64':'FLOAT'
+        'bool':'BOOL'
+        'struct':'STRUCT'
+        'type':'TYPE'
+    }
     # Regular expression rules for simple tokens
-    t_PLUS    = r'\+'
-    t_MINUS   = r'-'
-    t_TIMES   = r'\*'
-    t_DIVIDE  = r'/'
-    t_LPAREN  = r'\('
-    t_RPAREN  = r'\)'
+    t_LBRACE   = r'\{'
+    t_RBRACE   = r'\}'
+    t_BRACKETS  = r'[]'
 
     # A regular expression rule with some action code
     # Note addition of self parameter since we're in a class
-    def t_NUMBER(self,t):
-        r'\d+'
-        t.value = int(t.value)    
-        return t
 
+    def t_ID(self, t):
+        r'[A-Za-z]*'
+        t.type = reserved.get(t.value,'ID') # Check for reserved words
+        return t
     # Define a rule so we can track line numbers
-    def t_newline(self,t):
-        r'\n+'
-        t.lexer.lineno += len(t.value)
+    def t_NEWLINE(self,t):
+        r'\n'
+        t.lexer.lineno += 1
+        return t
 
     # A string containing ignored characters (spaces and tabs)
     t_ignore  = ' \t'

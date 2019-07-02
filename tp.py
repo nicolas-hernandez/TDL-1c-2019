@@ -4,6 +4,7 @@ import argparse
 import sys
 from lexer import GoLexer
 from parser import GoParser
+
 def parseArgs():
     parser = argparse.ArgumentParser(description='Translator, from GO to JSON.')
     parser.add_argument("--test",  help="Run a little test. Should be deleted and replaced with unit tests instead.", action='store_true')
@@ -39,5 +40,6 @@ if __name__ == "__main__":
     if args.test:
         testCase(l, p)
     else:
-        data = sys.stdin.read()
-        p.test(data)
+        data = sys.stdin.read().rstrip()
+        print(l.test(data))
+        print(p.test(data))

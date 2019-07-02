@@ -3,15 +3,13 @@ Trabajo Practico de Teoria de Lenguajes.
 
 ## Gramatica usada
 
-S -> D S   
-D -> type N T  
-N -> id  
-T -> C | B  
-B -> string | int | float64 | bool | []B  
+S -> D S | D   
+D -> type id T  
+T -> C | B | id  
+B -> string | int | float64 | bool | []T  
 C -> struct {\n L }  
-L -> N T L\n | lambda  
+L -> id T L\n | lambda  
 
 ## TODO
-- Agregar semantica al parser. Permitir multiples saltos de linea donde corresponda.
-- rand.py module: rint, rfloat y rstring. Retornan valores aleatorios de esos tipos.
+- Fix the parser
 - unit testing/turro testing

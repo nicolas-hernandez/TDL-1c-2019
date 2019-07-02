@@ -34,13 +34,10 @@ if __name__ == "__main__":
     args = parseArgs()
     l = GoLexer()
     l.build()        
-    p= None
     p = GoParser()
-    p.build(debug=args.debug) #Podemos sacar el parametro este para entregar
+    p.build(debug=args.debug)
     if args.test:
         testCase(l, p)
     else:
-        data = None
-        with open(sys.stdin, 'r') as file:
-            data = file.read()
-        p.parse(data)
+        data = sys.stdin.read()
+        p.test(data)

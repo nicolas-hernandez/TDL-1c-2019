@@ -1,11 +1,13 @@
-type primerciclo struct {
+type jefeDeHogar struct {
     nombre string
     hijo struct {
         nombreHijo string
         cantidad int
     }
-    esposa struct {
-        nombreMujer string
+    subJefeDeHogar struct {
+        nombre string
         edad int
     }
+    dinero float64
+    edad int
 }

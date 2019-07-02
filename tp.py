@@ -16,7 +16,7 @@ def testCase(lexer, parser):
     text ='''type persona struct {
     nombre  string
     edad    int
-    nacionalidad pais
+    ncapo pais
     ventas  []float64
     activo  bool
 }

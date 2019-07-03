@@ -17,7 +17,7 @@ class GoLexer(object):
        'BRACKETS',
        'ID',
        'NEWLINE',
-       'FLOAT'
+       'FLOAT',
     ] + list(reserved.values())
 
     # Regular expression rules for simple tokens
@@ -32,7 +32,7 @@ class GoLexer(object):
         r'float64'
         return t
     def t_ID(self, t):
-        r'[A-Za-z]+'
+        r'[a-z]+[A-Za-z]*'
         t.type = self.reserved.get(t.value,'ID') # Check for reserved words
         return t
     # Define a rule so we can track line numbers

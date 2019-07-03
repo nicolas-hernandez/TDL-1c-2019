@@ -68,7 +68,7 @@ class GoParser:
 
     # Error rule for syntax errors
     def p_error(self, p):
-        print("Syntax error:", p)
+        print("Syntax error:", p, file=sys.stderr)
 
     # Build the parser
     def build(self,**kwargs):

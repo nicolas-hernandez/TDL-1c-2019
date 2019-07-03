@@ -56,7 +56,11 @@ class GoParser:
 
     def p_list(self,p):
         'list : ID type NEWLINE list'
-        p[0] = '"' + p[1] + '": '+ p[2] + ",\n" + p[4]
+        # Si es el ultimo elemento no pone "coma" 
+        if p[4]:
+            p[0] = '"' + p[1] + '": '+ p[2] + ",\n" + p[4]
+        else:
+            p[0] = '"' + p[1] + '": '+ p[2] + "\n" + p[4]
     def p_list_end(self, p):
         'list : lambda'
         p[0] = ''

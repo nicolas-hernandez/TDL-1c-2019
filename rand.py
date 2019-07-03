@@ -18,6 +18,6 @@ def rfloat():
     return random.uniform(0, 105)
 
 def rstring():
-	chars = string.ascii_letters 
+	chars = string.ascii_lowercase
 	size = random.randint(0, 20)
 	return random_string_generator(size, chars)

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import ply.yacc as yacc
+import sys
 
 # Get the token map from the lexer.  This is required.
 from lexer import GoLexer
@@ -21,7 +22,7 @@ class GoParser:
 
     def p_definition(self, p):
         'definition : TYPE ID type'
-        p[0] = "{\n"+ '"' + p[2] + '":' + p[3]
+        p[0] = p[3]
 
     def p_type(self, p):
         '''type : complex 

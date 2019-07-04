@@ -5,8 +5,7 @@ import sys
 import random
 # Get the token map from the lexer.  This is required.
 from lexer import GoLexer
-from rand import rint, rstring, rfloat, rbool
-
+from rand import rint, rstring, rfloat, rbool, randomI
 
 class GoParser:
     tokens = GoLexer.tokens
@@ -52,7 +51,7 @@ class GoParser:
         p[0] = "[\n"
         tam = random.randint(0, 10)
         for i in range(0,tam):
-            p[0] = p[0] + p[2] 
+            p[0] = p[0] + str(randomI(p[2])) 
             if i < tam-1:
                 p[0] = p[0] + ",\n"
         p[0] = p[0] +"\n]"

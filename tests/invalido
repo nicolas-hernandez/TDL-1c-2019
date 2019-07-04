@@ -1,0 +1,7 @@
+type invalido struct {
+    NOMBre string
+    codigo struct {
+        prefijo string
+        sufijo string
+    }
+}

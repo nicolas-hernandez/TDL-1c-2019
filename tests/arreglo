@@ -1,0 +1,7 @@
+type arreglo struct {
+    arreglo []int
+    codigo struct {
+        prefijo string
+        sufijo string
+    }
+}

@@ -44,7 +44,13 @@ if __name__ == "__main__":
         data = sys.stdin.read().rstrip()
         result = p.parse(data)
         print(json.dumps(result, indent=4))
-        for key, value in result:
+        for key1, value in result:
+            for key2, _ in result:
+                if key1 != key2:
+                    replaceAttributeIn(key2, key1, value)
+
+
+            
 
 
 

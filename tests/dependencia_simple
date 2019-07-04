@@ -1,0 +1,8 @@
+type person struct {
+    home phone
+    mobile phone
+}
+type phone struct {
+    carrier string
+    number  int
+}

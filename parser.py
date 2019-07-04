@@ -14,15 +14,19 @@ class GoParser:
     #TODO: multiple newlines between definitions
     def p_initial_multiple(self, p):
         'initial : definition NEWLINE initial'
-        p[0] = p[1] + p[3]
+        p[0] = p[3]
+        p[0][p[1]['identifier']] = p[1]['type']
 
     def p_initial_single(self, p):
         'initial : definition'
-        p[0] = p[1]
+        p[0] = { p[1]['identifier'] : p[1]['type'] }
 
     def p_definition(self, p):
         'definition : TYPE ID type'
-        p[0] = p[3]
+        p[0] = {
+            'identifier' : p[2],
+            'type' : p[3]        
+        }
 
     def p_type(self, p):
         '''type : complex 
@@ -30,46 +34,38 @@ class GoParser:
                 | ID'''
         p[0] = p[1]
    
-    # TODO: testear como lexea/parsea los brackets, con espacio y sin espacio
-    # creo que al ignorar espacios puedo aceptar "[]  int". Es valido?
     def p_str(self, p):
         'basic : STR' 
-        p[0] = rstring()
+        p[0] = 'string'
 
     def p_int(self, p):
         'basic : INT' 
-        p[0] = str(rint())
+        p[0] = 'int'
     
     def p_float(self, p):
         'basic : FLOAT' 
-        p[0] = str(rfloat())
+        p[0] = 'float'
     def p_bool(self, p):
         'basic : BOOL' 
-        p[0] = str(rbool())
+        p[0] = 'bool'
+
+
     def p_array(self, p):
         'basic : BRACKETS type' 
-        p[0] = "[\n"
-        tam = random.randint(0, 10)
-        for i in range(0,tam):
-            p[0] = p[0] + str(randomI(p[2])) 
-            if i < tam-1:
-                p[0] = p[0] + ",\n"
-        p[0] = p[0] +"\n]"
+        p[0] = 'array ' + p[2]
 
     def p_complex(self, p):
         'complex : STRUCT LBRACE NEWLINE list RBRACE'
-        p[0] = "{ \n" + p[4] + "}"
+        p[0] = p[4]
 
     def p_list(self,p):
         'list : ID type NEWLINE list'
-        # Si es el ultimo elemento no pone "coma" 
-        if p[4]:
-            p[0] = '"' + p[1] + '": '+ p[2] + ",\n" + p[4]
-        else:
-            p[0] = '"' + p[1] + '": '+ p[2] + "\n" + p[4]
+        p[0] = p[4]
+        p[0][p[1]] = p[2]
+
     def p_list_end(self, p):
         'list : lambda'
-        p[0] = ''
+        p[0] = {}
 
 
     #Define el lambda de la gramatica

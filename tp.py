@@ -43,3 +43,4 @@ if __name__ == "__main__":
         data = sys.stdin.read().rstrip()
         print(l.test(data))
         print(p.test(data))
+        result = p.test(data)

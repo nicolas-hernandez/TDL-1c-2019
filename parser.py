@@ -27,6 +27,7 @@ class GoParser:
             'identifier' : p[2],
             'type' : p[3]        
         }
+        #self.deps[p[2]] = p[3]['ids']
 
     def p_type(self, p):
         '''type : complex 
@@ -57,6 +58,7 @@ class GoParser:
     def p_complex(self, p):
         'complex : STRUCT LBRACE NEWLINE list RBRACE'
         p[0] = p[4]
+        
 
     def p_list(self,p):
         'list : ID type NEWLINE list'
@@ -80,6 +82,6 @@ class GoParser:
     # Build the parser
     def build(self,**kwargs):
         self.parser = yacc.yacc(module=self, **kwargs)
-    def test(self, data):
+    def parse(self, data):
         return self.parser.parse(data)
 

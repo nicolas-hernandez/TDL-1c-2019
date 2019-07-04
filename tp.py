@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import argparse 
 import sys
+import json
 from lexer import GoLexer
 from parser import GoParser
 
@@ -41,6 +42,10 @@ if __name__ == "__main__":
         testCase(l, p)
     else:
         data = sys.stdin.read().rstrip()
-        print(l.test(data))
-        print(p.test(data))
-        result = p.test(data)
+        result = p.parse(data)
+        print(json.dumps(result, indent=4))
+        for key, value in result:
+
+
+
+        

@@ -21,6 +21,3 @@ def rstring():
 	chars = string.ascii_lowercase
 	size = random.randint(0, 20)
 	return random_string_generator(size, chars)
-
-def rArray(type1):
-	print (type1)

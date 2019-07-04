@@ -15,7 +15,7 @@ def rint():
     return random.randint(0, 999999999)
 
 def rfloat():
-    return random.uniform(0, 105)
+    return round(random.uniform(0, 105), 1)
 
 def rstring():
 	chars = string.ascii_lowercase

@@ -49,13 +49,13 @@ class GoParser:
         p[0] = str(rbool())
     def p_array(self, p):
         'basic : BRACKETS type' 
-        p[0] = "["
+        p[0] = "[\n"
         tam = random.randint(0, 10)
         for i in range(0,tam):
             p[0] = p[0] + p[2] 
             if i < tam-1:
-                p[0] = p[0] + ","
-        p[0] = p[0] +"]"
+                p[0] = p[0] + ",\n"
+        p[0] = p[0] +"\n]"
 
     def p_complex(self, p):
         'complex : STRUCT LBRACE NEWLINE list RBRACE'

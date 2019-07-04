@@ -9,7 +9,8 @@ class GoLexer(object):
         'int':'INT',
         'bool':'BOOL',
         'struct':'STRUCT',
-        'type':'TYPE'
+        'type':'TYPE',
+        'float64':'FLOAT'
     }
     tokens = [
        'LBRACE',
@@ -28,11 +29,8 @@ class GoLexer(object):
     # A regular expression rule with some action code
     # Note addition of self parameter since we're in a class
 
-    def t_FLOAT(self, t):
-        r'float64'
-        return t
     def t_ID(self, t):
-        r'[a-z]+[A-Za-z]*'
+        r'[a-z]+[A-Za-z0-9_]*'
         t.type = self.reserved.get(t.value,'ID') # Check for reserved words
         return t
     # Define a rule so we can track line numbers

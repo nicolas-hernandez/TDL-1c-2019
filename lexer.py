@@ -18,7 +18,6 @@ class GoLexer(object):
        'BRACKETS',
        'ID',
        'NEWLINE',
-       'FLOAT',
     ] + list(reserved.values())
 
     # Regular expression rules for simple tokens

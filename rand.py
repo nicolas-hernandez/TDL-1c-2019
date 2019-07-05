@@ -6,10 +6,13 @@ def randomValue(valueType):
     if type(valueType) is not dict:
         if valueType in basicTypes.keys():
             return basicTypes[valueType]()
+        if valueType.startswith('array '):
+            arrayType = valueType[len('array '):]
+            tam = random.randint(0, 10)
+            array = [randomValue(arrayType) for x in range(tam)]
+            return array
     else:
-        print(valueType)
         for key, value in valueType.items():
-            print(key, " ", value)
             valueType[key] = randomValue(value)
         return valueType
 

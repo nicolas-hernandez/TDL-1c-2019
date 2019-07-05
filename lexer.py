@@ -44,8 +44,8 @@ class GoLexer(object):
 
     # Error handling rule
     def t_error(self,t):
-        print("Illegal character '%s'" % t.value[0], file=sys.stderr)
-        t.lexer.skip(1)
+        print("Illegal character '{0}' found on line: {1}".format(t.value[0], t.lexer.lineno), file=sys.stderr)
+        sys.exit(1)
 
     # Build the lexer
     def build(self,**kwargs):

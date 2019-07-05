@@ -1,0 +1,16 @@
+type primerciclo struct {
+    nombre string
+    padre struct {
+        nombrePadre string
+        cantidad int
+        dependencia abuelo  
+	}
+}
+type abuelo struct {
+	nombreAbuelo string
+	edad int
+	triple dep
+}
+type dep struct {
+	lalala float
+}

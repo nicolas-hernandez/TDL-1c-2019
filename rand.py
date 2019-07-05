@@ -4,7 +4,6 @@ from copy import deepcopy
 
 
 def randomValue(valueType):
-    print(valueType)
     if type(valueType) is not dict:
         if valueType in basicTypes.keys():
             return basicTypes[valueType]()

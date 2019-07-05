@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import ply.yacc as yacc
 import sys
-import random
 # Get the token map from the lexer.  This is required.
 from lexer import GoLexer
 

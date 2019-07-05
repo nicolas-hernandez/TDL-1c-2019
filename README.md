@@ -11,5 +11,8 @@ C -> struct {\n L }
 L -> id T L\n | lambda  
 
 ## TODO
-- Fix the parser
-- unit testing/turro testing
+- El diccionario que generamos en parser.py mantiene orden de insercion 
+(solo en python 3.6+), por lo que nuestros json quedan con los atributos en el 
+orden inverso que el archivo de entrada.
+- Detect border cases.
+- Detect dependency cicles.

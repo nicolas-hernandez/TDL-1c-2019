@@ -37,17 +37,6 @@ def rstring():
 	size = random.randint(0, 20)
 	return random_string_generator(size, chars)
 
-def randomI(typeI):
-	#en typeI yo quiero que llegue el tipo del array
-	if typeI == 'INT':
-		return rint()
-	if typeI == 'BOOL':
-		return rbool()
-	if typeI == 'FLOAT':
-		return rfloat()
-	if typeI == 'STR':
-		return rstring()
-
 basicTypes = {
         'int'   : rint,
         'bool'  : rbool,

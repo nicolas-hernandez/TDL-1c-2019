@@ -15,5 +15,7 @@ L -> id T L\n | lambda
 (solo en python 3.6+), por lo que nuestros json quedan con los atributos en el 
 orden inverso que el archivo de entrada. FIXED
 - Si queremos que corra en python 3.5 o menos, hay que usar orderedDict en el parser
+- FIXED: tests/dependencia_escondida.
+- TODO: handle array de tipo complejo.
 - Detect border cases.
 - Detect dependency cicles.

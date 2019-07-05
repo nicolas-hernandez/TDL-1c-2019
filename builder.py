@@ -19,11 +19,14 @@ class InstanceBuilder:
         for key1, value in self.ast.items():
             for key2, value2 in self.ast.items():
                 if key1 != key2:
-                    self.replaceAttributeIn(key1, value, key2, value2)
+                    self.replaceAttributeIn(value, key2, value2)
         print(self.ast)
     
-    def replaceAttributeIn(self, key1, keyValue, key2, key2Value):
-        for identifier, kind in keyValue.items():
+    def replaceAttributeIn(self, value, key2, key2Value):
+        for identifier, kind in value.items():
             if kind == key2:
-               keyValue[identifier] = deepcopy(key2Value)
+                value[identifier] = deepcopy(key2Value)
+            elseif type(kind) is dict:
+                self.replaceAttributeIn(kind, key2, key2Value)
+
 

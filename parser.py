@@ -9,6 +9,7 @@ from rand import rint, rstring, rfloat, rbool, randomI
 
 class GoParser:
     tokens = GoLexer.tokens
+    principal_type = None
     # No terminales en minuscula
     # Terminales en mayuscula, vienen del lexer
     #TODO: multiple newlines between definitions
@@ -16,10 +17,12 @@ class GoParser:
         'initial : definition NEWLINE initial'
         p[0] = p[3]
         p[0][p[1]['identifier']] = p[1]['type']
+        self.principal_type = p[1]['identifier']
 
     def p_initial_single(self, p):
         'initial : definition'
         p[0] = { p[1]['identifier'] : p[1]['type'] }
+        self.principal_type = p[1]['identifier']
 
     def p_definition(self, p):
         'definition : TYPE ID type'
@@ -83,5 +86,5 @@ class GoParser:
     def build(self,**kwargs):
         self.parser = yacc.yacc(module=self, **kwargs)
     def parse(self, data):
-        return self.parser.parse(data)
+        return self.parser.parse(data), self.principal_type
 

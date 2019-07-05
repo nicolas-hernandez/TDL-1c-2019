@@ -44,8 +44,8 @@ if __name__ == "__main__":
         testCase(l, p)
     else:
         data = sys.stdin.read().rstrip()
-        result = p.parse(data)
-        print(json.dumps(result, indent=4))
-        JsonBuilder(result)
+        ast, principal_type = p.parse(data)
+        print(json.dumps(ast, indent=4))
+        JsonBuilder(ast, principal_type)
 
         

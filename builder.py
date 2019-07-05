@@ -4,8 +4,9 @@ import sys
 from rand import rint, rstring, rfloat, rbool, randomI
 
 class JsonBuilder:
-    def __init__(self, ast):
+    def __init__(self, ast, principal):
         self.ast = ast
+        self.principal = principal
         self.buildAST()
 
     def buildAST(self):
@@ -14,6 +15,7 @@ class JsonBuilder:
                 if key1 != key2:
                     self.replaceAttributeIn(key1, value, key2, value2)
         print(self.ast)
+        print(self.ast[self.principal])
     
     def replaceAttributeIn(self, key1, keyValue, key2, key2Value):
         for identifier, kind in keyValue.items():

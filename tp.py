@@ -5,7 +5,7 @@ import sys
 import json
 from lexer import GoLexer
 from parser import GoParser
-from builder import JsonBuilder
+from builder import InstanceBuilder
 
 def parseArgs():
     parser = argparse.ArgumentParser(description='Translator, from GO to JSON.')
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     else:
         data = sys.stdin.read().rstrip()
         ast, principal_type = p.parse(data)
-        print(json.dumps(ast, indent=4))
-        JsonBuilder(ast, principal_type)
+        type_instance = InstanceBuilder(ast, principal_type).randomInstance()
+        print(json.dumps(type_instance, indent=4))
 
         

@@ -5,7 +5,6 @@ import sys
 import random
 # Get the token map from the lexer.  This is required.
 from lexer import GoLexer
-from rand import rint, rstring, rfloat, rbool, randomI
 
 class GoParser:
     tokens = GoLexer.tokens

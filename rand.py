@@ -1,6 +1,18 @@
 import random
 import string
 
+
+def randomValue(valueType):
+    if type(valueType) is not dict:
+        if valueType in basicTypes.keys():
+            return basicTypes[valueType]()
+    else:
+        print(valueType)
+        for key, value in valueType.items():
+            print(key, " ", value)
+            valueType[key] = randomValue(value)
+        return valueType
+
 def random_string_generator(str_size, allowed_chars):
     return ''.join(random.choice(allowed_chars) for x in range(str_size))
 
@@ -32,5 +44,10 @@ def randomI(typeI):
 		return rfloat()
 	if typeI == 'STR':
 		return rstring()
-		
-		
+
+basicTypes = {
+        'int'   : rint,
+        'bool'  : rbool,
+        'string': rstring,
+        'float' : rfloat,
+        }

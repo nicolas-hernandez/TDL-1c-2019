@@ -54,7 +54,7 @@ class GoParser:
 
     def p_array(self, p):
         'basic : BRACKETS type' 
-        p[0] = 'array ' + p[2]
+        p[0] = {'[]': p[2]}
 
     def p_complex(self, p):
         'complex : STRUCT LBRACE NEWLINE list RBRACE'

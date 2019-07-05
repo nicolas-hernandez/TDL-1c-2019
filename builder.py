@@ -20,7 +20,6 @@ class InstanceBuilder:
             for key2, value2 in self.ast.items():
                 if key1 != key2:
                     self.replaceAttributeIn(value, key2, value2)
-        print(self.ast)
     
     def replaceAttributeIn(self, value, key2, key2Value):
         for identifier, kind in value.items():
@@ -28,5 +27,6 @@ class InstanceBuilder:
                 value[identifier] = deepcopy(key2Value)
             elif type(kind) is dict:
                 self.replaceAttributeIn(kind, key2, key2Value)
+                    
 
 

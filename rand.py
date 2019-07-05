@@ -1,20 +1,25 @@
 import random
 import string
+from copy import deepcopy
 
 
 def randomValue(valueType):
+    print(valueType)
     if type(valueType) is not dict:
         if valueType in basicTypes.keys():
             return basicTypes[valueType]()
-        if valueType.startswith('array '):
-            arrayType = valueType[len('array '):]
-            tam = random.randint(0, 10)
-            array = [randomValue(arrayType) for x in range(tam)]
-            return array
     else:
         for key, value in valueType.items():
-            valueType[key] = randomValue(value)
-        return valueType
+            if key == '[]':
+                tam = random.randint(0, 10)
+                array = []
+                for x in range(tam):
+                    arrayType = deepcopy(value)
+                    array.append(randomValue(arrayType))
+                return array
+            valueType[key] = deepcopy(randomValue(value))
+        return deepcopy(valueType)
+
 
 def random_string_generator(str_size, allowed_chars):
     return ''.join(random.choice(allowed_chars) for x in range(str_size))

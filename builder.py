@@ -26,7 +26,7 @@ class InstanceBuilder:
         for identifier, kind in value.items():
             if kind == key2:
                 value[identifier] = deepcopy(key2Value)
-            elseif type(kind) is dict:
+            elif type(kind) is dict:
                 self.replaceAttributeIn(kind, key2, key2Value)
 
 

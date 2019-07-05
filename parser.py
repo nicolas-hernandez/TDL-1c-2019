@@ -13,8 +13,8 @@ class GoParser:
     #TODO: multiple newlines between definitions
     def p_initial_multiple(self, p):
         'initial : definition NEWLINE initial'
-        p[0] = p[3]
-        p[0][p[1]['identifier']] = p[1]['type']
+        p[0] = { p[1]['identifier'] : p[1]['type'] }
+        p[0].update(p[3]) 
         self.principal_type = p[1]['identifier']
 
     def p_initial_single(self, p):
@@ -63,8 +63,8 @@ class GoParser:
 
     def p_list(self,p):
         'list : ID type NEWLINE list'
-        p[0] = p[4]
-        p[0][p[1]] = p[2]
+        p[0] = { p[1] : p[2] }
+        p[0].update(p[4])
 
     def p_list_end(self, p):
         'list : lambda'

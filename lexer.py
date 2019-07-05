@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import ply.lex as lex
+import sys
  
 class GoLexer(object):
     # List of token names.   This is always required
@@ -43,7 +44,7 @@ class GoLexer(object):
 
     # Error handling rule
     def t_error(self,t):
-        print("Illegal character '%s'" % t.value[0])
+        print("Illegal character '%s'" % t.value[0], file=sys.stderr)
         t.lexer.skip(1)
 
     # Build the lexer

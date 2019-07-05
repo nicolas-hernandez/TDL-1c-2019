@@ -17,5 +17,5 @@ orden inverso que el archivo de entrada. FIXED
 - YAFUE: Si queremos que corra en python 3.5 o menos, hay que usar orderedDict en el parser
 - FIXED: tests/dependencia_escondida.
 - FIXED: handle array de tipo complejo.
-- Detect dependency cicles.
+- FIXED: Detect dependency cicles. Algorithm source: https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
 - Error de sintaxis en el lexer/parser deberia abortar ejecucion.

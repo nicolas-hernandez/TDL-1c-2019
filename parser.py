@@ -28,7 +28,6 @@ class GoParser:
             'identifier' : p[2],
             'type' : p[3]        
         }
-        #self.deps[p[2]] = p[3]['ids']
 
     def p_type(self, p):
         '''type : complex 
@@ -78,7 +77,11 @@ class GoParser:
 
     # Error rule for syntax errors
     def p_error(self, p):
-        print("Syntax error:", p, file=sys.stderr)
+        if p is None:
+            print("Syntax error: unexpected end of file while parsing.", file=sys.stderr)
+        else:
+            print("Syntax error: ", p, file=sys.stderr)
+        sys.exit(1)
 
     # Build the parser
     def build(self,**kwargs):

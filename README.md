@@ -14,8 +14,8 @@ L -> id T L\n | lambda
 - El diccionario que generamos en parser.py mantiene orden de insercion 
 (solo en python 3.6+), por lo que nuestros json quedan con los atributos en el 
 orden inverso que el archivo de entrada. FIXED
-- Si queremos que corra en python 3.5 o menos, hay que usar orderedDict en el parser
+- YAFUE: Si queremos que corra en python 3.5 o menos, hay que usar orderedDict en el parser
 - FIXED: tests/dependencia_escondida.
-- TODO: handle array de tipo complejo.
-- Detect border cases.
+- FIXED: handle array de tipo complejo.
 - Detect dependency cicles.
+- Error de sintaxis en el lexer/parser deberia abortar ejecucion.

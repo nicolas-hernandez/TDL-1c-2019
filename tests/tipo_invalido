@@ -1,0 +1,7 @@
+type pais struct {
+    nombre string
+    codigo struct {
+        prefijo invalido
+        sufijo  invalido
+    }
+}

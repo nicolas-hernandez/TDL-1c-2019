@@ -10,7 +10,6 @@ class GoParser:
     principal_type = None
     # No terminales en minuscula
     # Terminales en mayuscula, vienen del lexer
-    #TODO: multiple newlines between definitions
     def p_initial_multiple(self, p):
         'initial : definition NEWLINE initial'
         p[0] = { p[1]['identifier'] : p[1]['type'] }

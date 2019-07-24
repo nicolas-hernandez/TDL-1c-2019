@@ -9,7 +9,7 @@ from builder import InstanceBuilder
 
 def parseArgs():
     parser = argparse.ArgumentParser(description='Translator, from GO to JSON.')
-    parser.add_argument("--test",  help="Run a little test. Should be deleted and replaced with unit tests instead.", action='store_true')
+    parser.add_argument("--test",  help="Run a little test.", action='store_true')
     parser.add_argument("--debug",  help="Enable mode debug.", action='store_true')
     args = parser.parse_args()                                            
     return args

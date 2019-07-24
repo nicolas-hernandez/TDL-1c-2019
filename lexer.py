@@ -16,7 +16,8 @@ class GoLexer(object):
     tokens = [
        'LBRACE',
        'RBRACE',
-       'BRACKETS',
+       'LBRACKET',
+       'RBRACKET',
        'ID',
        'NEWLINE',
     ] + list(reserved.values())
@@ -24,8 +25,8 @@ class GoLexer(object):
     # Regular expression rules for simple tokens
     t_LBRACE   = r'\{'
     t_RBRACE   = r'\}'
-    t_BRACKETS  = r'\[\]'
-
+    t_LBRACKET  = r'\['
+    t_RBRACKET  = r'\]'
     # A regular expression rule with some action code
     # Note addition of self parameter since we're in a class
 

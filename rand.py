@@ -7,6 +7,9 @@ def randomValue(valueType):
     if type(valueType) is not dict:
         if valueType in basicTypes.keys():
             return basicTypes[valueType]()
+        else:
+            print("Tipo ingresado invalido")
+            raise TypeError
     else:
         for key, value in valueType.items():
             if key == '[]':

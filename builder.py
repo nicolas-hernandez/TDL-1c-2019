@@ -26,6 +26,7 @@ class InstanceBuilder:
                 if key1 != key2:
                     self.replaceAttributeIn(value, key2, value2)
         self.assertNoCycles()
+        self.assertNoRedefinirTipos()
     
     def replaceAttributeIn(self, value, key2, key2Value):
         for identifier, kind in value.items():
@@ -34,6 +35,11 @@ class InstanceBuilder:
                 value[identifier] = deepcopy(key2Value)
             elif type(kind) is dict:
                 self.replaceAttributeIn(kind, key2, key2Value)
+
+    def assertNoRedefinirTipos(self):
+        # Creo un conjunto
+        set_deps = { i for i in self.deps.keys()}
+        assert len(set_deps) != len(self.deps.keys())
                     
     def assertNoCycles(self):
         visited = {}

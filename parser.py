@@ -79,7 +79,7 @@ class GoParser:
         if p is None:
             print("Syntax error: unexpected end of file while parsing.", file=sys.stderr)
         else:
-            print("Syntax error: ", p, file=sys.stderr)
+            print("Syntax error: Unexpected {} found on line {}".format(p.value, p.lineno), file=sys.stderr)
         sys.exit(1)
 
     # Build the parser

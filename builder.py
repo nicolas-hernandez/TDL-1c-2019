@@ -39,7 +39,7 @@ class InstanceBuilder:
     def assertNoRedefinirTipos(self):
         # Creo un conjunto
         set_deps = { i for i in self.deps.keys()}
-        assert len(set_deps) != len(self.deps.keys())
+        assert len(set_deps) == len(self.deps.keys())
                     
     def assertNoCycles(self):
         visited = {}

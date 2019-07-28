@@ -1,4 +1,8 @@
 type persona struct {
+    nombre string
+    apellido string
     dni int
-    pep [                   ][][]string
+    tel int
+    direccion string
+    sueldo float64
 }

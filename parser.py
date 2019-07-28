@@ -68,7 +68,6 @@ class GoParser:
         if p[1] in p[4].keys():
             print("Syntax error: Redefined attribute {} found on line {}".format(p[1], p.lineno(1)), file=sys.stderr)
             sys.exit(1)
-
         p[0].update(p[4])
 
     def p_list_end(self, p):

@@ -40,6 +40,13 @@ class InstanceBuilder:
         # Creo un conjunto
         set_deps = { i for i in self.deps.keys()}
         assert len(set_deps) == len(self.deps.keys())
+        visited = {}
+        for key in self.deps.keys():
+            if key in visited:
+                 raise Exception("Elemento Redefinido")
+            else:
+                visited[key] = True
+
                     
     def assertNoCycles(self):
         visited = {}

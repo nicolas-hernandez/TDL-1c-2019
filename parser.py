@@ -13,6 +13,9 @@ class GoParser:
     def p_initial_multiple(self, p):
         'initial : definition NEWLINE initial'
         p[0] = { p[1]['identifier'] : p[1]['type'] }
+        if p[1]['identifier'] in p[3].keys():
+            print("Syntax error: Redefined type {} found on line {}".format(p[1]['identifier'], p.lineno(2)), file=sys.stderr)
+            sys.exit(1)
         p[0].update(p[3]) 
         self.principal_type = p[1]['identifier']
 
@@ -62,6 +65,10 @@ class GoParser:
     def p_list(self,p):
         'list : ID type NEWLINE list'
         p[0] = { p[1] : p[2] }
+        if p[1] in p[4].keys():
+            print("Syntax error: Redefined attribute {} found on line {}".format(p[1], p.lineno(1)), file=sys.stderr)
+            sys.exit(1)
+
         p[0].update(p[4])
 
     def p_list_end(self, p):

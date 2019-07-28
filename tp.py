@@ -30,7 +30,7 @@ type pais struct {
     }
 }'''
     print(lexer.test(text))
-    print(parser.test(text))
+    print(parser.parse(text))
 
     
 

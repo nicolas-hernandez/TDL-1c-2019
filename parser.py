@@ -11,12 +11,12 @@ class GoParser:
     # No terminales en minuscula
     # Terminales en mayuscula, vienen del lexer
     def p_initial_multiple(self, p):
-        'initial : definition NEWLINE initial'
+        'initial : definition  initial'
         p[0] = { p[1]['identifier'] : p[1]['type'] }
-        if p[1]['identifier'] in p[3].keys():
+        if p[1]['identifier'] in p[2].keys():
             print("Syntax error: Redefined type {} found on line {}".format(p[1]['identifier'], p[1]['lineno']), file=sys.stderr)
             sys.exit(1)
-        p[0].update(p[3]) 
+        p[0].update(p[2]) 
         self.principal_type = p[1]['identifier']
 
     def p_initial_single(self, p):
@@ -59,17 +59,17 @@ class GoParser:
         p[0] = {'[]': p[3]}
 
     def p_complex(self, p):
-        'complex : STRUCT LBRACE NEWLINE list RBRACE'
-        p[0] = p[4]
+        'complex : STRUCT LBRACE list RBRACE'
+        p[0] = p[3]
         
 
     def p_list(self,p):
-        'list : ID type NEWLINE list'
+        'list : ID type list'
         p[0] = { p[1] : p[2] }
-        if p[1] in p[4].keys():
+        if p[1] in p[3].keys():
             print("Syntax error: Redefined attribute {} found on line {}".format(p[1], p.lineno(1)), file=sys.stderr)
             sys.exit(1)
-        p[0].update(p[4])
+        p[0].update(p[3])
 
     def p_list_end(self, p):
         'list : lambda'

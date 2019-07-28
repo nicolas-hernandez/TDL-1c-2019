@@ -18,8 +18,7 @@ class GoLexer(object):
        'RBRACE',
        'LBRACKET',
        'RBRACKET',
-       'ID',
-       'NEWLINE',
+       'ID'
     ] + list(reserved.values())
 
     # Regular expression rules for simple tokens
@@ -38,7 +37,6 @@ class GoLexer(object):
     def t_NEWLINE(self,t):
         r'\n'
         t.lexer.lineno += 1
-        return t
 
     # A string containing ignored characters (spaces and tabs)
     t_ignore  = ' \t'

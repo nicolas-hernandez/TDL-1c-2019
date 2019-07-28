@@ -1,6 +1,5 @@
 type persona struct {
     nombre  string
-    edad    int
+    edad    caca
     ventas  []float64
-    nombre  bool
 }

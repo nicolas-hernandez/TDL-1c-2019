@@ -43,7 +43,8 @@ class InstanceBuilder:
         visited = {}
         for key in self.deps.keys():
             if key in visited:
-                 raise Exception("Elemento Redefinido")
+                 print("Elemento Redefinido")
+                 sys.exit(1)
             else:
                 visited[key] = True
 
@@ -57,7 +58,8 @@ class InstanceBuilder:
 
         for identifier in self.deps.keys():
             if self.isCyclic(identifier, visited, stack):
-                raise Exception("We found a cyclic type dependency")
+                print("We found a cyclic type dependency")
+                sys.exit(1)
 
     def isCyclic(self, identifier, visited, stack):
         if not visited[identifier]:

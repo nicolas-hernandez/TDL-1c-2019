@@ -42,7 +42,6 @@ class GoLexer(object):
 
     # A string containing ignored characters (spaces and tabs)
     t_ignore  = ' \t'
-
     # Error handling rule
     def t_error(self,t):
         print("Illegal character '{0}' found on line: {1}".format(t.value[0], t.lexer.lineno), file=sys.stderr)

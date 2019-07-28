@@ -8,6 +8,7 @@ from lexer import GoLexer
 class GoParser:
     tokens = GoLexer.tokens
     principal_type = None
+    visitado = {}
     # No terminales en minuscula
     # Terminales en mayuscula, vienen del lexer
     def p_initial_multiple(self, p):
@@ -62,6 +63,11 @@ class GoParser:
     def p_list(self,p):
         'list : ID type NEWLINE list'
         p[0] = { p[1] : p[2] }
+        if p[1] in self.visitado:
+            print("Elemento Redefinido", p[1])
+            sys.exit(1)
+        else:
+            self.visitado[p[1]] = True
         p[0].update(p[4])
 
     def p_list_end(self, p):

@@ -35,7 +35,6 @@ class InstanceBuilder:
             elif type(kind) is dict:
                 self.replaceAttributeIn(kind, key2, key2Value)
 
-                    
     def assertNoCycles(self):
         visited = {}
         stack = {}
@@ -45,7 +44,8 @@ class InstanceBuilder:
 
         for identifier in self.deps.keys():
             if self.isCyclic(identifier, visited, stack):
-                print("We found a type dependency cicle: ", list(stack.keys()), file=sys.stderr)
+                cicle = [t for t in stack.keys() if stack[t]]
+                print("We found a type dependency cicle: ", cicle, file=sys.stderr)
                 sys.exit(1)
 
     def isCyclic(self, identifier, visited, stack):

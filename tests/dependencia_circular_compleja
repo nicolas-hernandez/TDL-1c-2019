@@ -1,0 +1,27 @@
+type primerciclo struct {
+    nombre string
+    padre struct {
+        nombrePadre string
+        cantidad int
+        dependencia abuelo  
+	}
+}
+
+type abuelo struct {
+	nombreAbuelo string
+	edad int
+	triple dep
+	hola included 
+}
+
+type irrelevant struct{
+	nombre string
+}
+
+type included struct{
+	nombre2 string
+}
+type dep struct {
+	important 	float
+	ciclo		primerciclo
+}

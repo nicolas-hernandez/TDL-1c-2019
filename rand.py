@@ -1,6 +1,7 @@
 import random
 import string
 from copy import deepcopy
+import sys
 
 
 def randomValue(valueType):
@@ -9,7 +10,7 @@ def randomValue(valueType):
             return basicTypes[valueType]()
         else:
             print("Tipo ingresado invalido: ", valueType)
-            raise TypeError
+            sys.exit(1)
     else:
         for key, value in valueType.items():
             if key == '[]':

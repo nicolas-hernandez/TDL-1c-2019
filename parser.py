@@ -14,7 +14,7 @@ class GoParser:
         'initial : definition NEWLINE initial'
         p[0] = { p[1]['identifier'] : p[1]['type'] }
         if p[1]['identifier'] in p[3].keys():
-            print("Syntax error: Redefined type {} found on line {}".format(p[1]['identifier'], p.lineno(2)), file=sys.stderr)
+            print("Syntax error: Redefined type {} found on line {}".format(p[1]['identifier'], p[1]['lineno']), file=sys.stderr)
             sys.exit(1)
         p[0].update(p[3]) 
         self.principal_type = p[1]['identifier']
@@ -28,7 +28,8 @@ class GoParser:
         'definition : TYPE ID type'
         p[0] = {
             'identifier' : p[2],
-            'type' : p[3]        
+            'type' : p[3],
+            'lineno': p.lineno(2)
         }
 
     def p_type(self, p):

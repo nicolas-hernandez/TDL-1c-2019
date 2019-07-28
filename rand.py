@@ -8,7 +8,7 @@ def randomValue(valueType):
         if valueType in basicTypes.keys():
             return basicTypes[valueType]()
         else:
-            print("Tipo ingresado invalido")
+            print("Tipo ingresado invalido: ", valueType)
             raise TypeError
     else:
         for key, value in valueType.items():

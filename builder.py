@@ -26,7 +26,6 @@ class InstanceBuilder:
                 if key1 != key2:
                     self.replaceAttributeIn(value, key2, value2)
         self.assertNoCycles()
-        self.assertNoRedefinirTipos()
     
     def replaceAttributeIn(self, value, key2, key2Value):
         for identifier, kind in value.items():
@@ -35,17 +34,6 @@ class InstanceBuilder:
                 value[identifier] = deepcopy(key2Value)
             elif type(kind) is dict:
                 self.replaceAttributeIn(kind, key2, key2Value)
-
-    def assertNoRedefinirTipos(self):
-        # Creo un conjunto
-        set_deps = { i for i in self.deps.keys()}
-        assert len(set_deps) == len(self.deps.keys())
-        visited = {}
-        for key in self.deps.keys():
-            if key in visited:
-                 raise Exception("Elemento Redefinido")
-            else:
-                visited[key] = True
 
                     
     def assertNoCycles(self):
@@ -57,7 +45,8 @@ class InstanceBuilder:
 
         for identifier in self.deps.keys():
             if self.isCyclic(identifier, visited, stack):
-                raise Exception("We found a cyclic type dependency")
+                print("We found a type dependency cicle: ", list(stack.keys()), file=sys.stderr)
+                sys.exit(1)
 
     def isCyclic(self, identifier, visited, stack):
         if not visited[identifier]:
